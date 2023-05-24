@@ -1,40 +1,36 @@
-<script setup>
+<script setup lang="ts">
 import { watch, computed } from "vue";
 
-const props = defineProps({
-  testingTime: {
-    type: Number,
-    required: true,
-  },
-  numderOfCheckedSymbols: {
-    type: Number,
-    required: true,
-  },
-  numberOfUnvalidSymbols: {
-    type: Number,
-    required: true,
-  },
-});
+const props = defineProps<{
+  testingTime: number;
+  numderOfCheckedSymbols: number;
+  numberOfUnvalidSymbols: number;
+}>();
 
-const emit = defineEmits({
-  "start-new-test": null,
-  "change-testing-params": (speed, accuracy) => {
-    if (typeof speed === "number" && typeof accuracy === "number") {
-      return true;
-    } else {
-      console.warn("Invalid change-time event payload!");
-      return false;
-    }
-  },
-});
+const emit = defineEmits<{
+  (e: "change-testing-params", speed: number, accuracy: number): void;
+  (e: "start-new-test"): void;
+}>();
 
-const speed = computed(() => {
+// const emit = defineEmits({
+//   "start-new-test": null,
+//   "change-testing-params": (speed, accuracy) => {
+//     if (typeof speed === "number" && typeof accuracy === "number") {
+//       return true;
+//     } else {
+//       console.warn("Invalid change-time event payload!");
+//       return false;
+//     }
+//   },
+// });
+
+const speed = computed<number>(() => {
   return props.testingTime
     ? Math.trunc((props.numderOfCheckedSymbols / props.testingTime) * 60)
     : 0;
 });
 
-const accuracy = computed(() => {
+const accuracy = computed<number>(() => {
   return props.numderOfCheckedSymbols
     ? props.numberOfUnvalidSymbols
       ? 100 -
@@ -51,9 +47,9 @@ watch([speed, accuracy], () => {
   emit("change-testing-params", speed.value, accuracy.value);
 });
 
-const startNewTest = () => {
+const startNewTest = (): void => {
   const btn = document.querySelector(".test-main-new-test-button");
-  btn.blur();
+  (btn as HTMLInputElement).blur();
   emit("start-new-test");
 };
 </script>

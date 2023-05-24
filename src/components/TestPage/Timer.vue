@@ -1,23 +1,24 @@
-<script setup>
+<script setup lang="ts">
 import { ref, watch, onUnmounted } from "vue";
 
-const props = defineProps({
-  isNewTest: {
-    type: Boolean,
-    required: true,
-  },
-});
+const props = defineProps<{
+  isNewTest: boolean;
+}>();
 
-const emit = defineEmits({
-  "change-time": (newTestingTime) => {
-    if (typeof newTestingTime === "number") {
-      return true;
-    } else {
-      console.warn("Invalid change-time event payload!");
-      return false;
-    }
-  },
-});
+const emit = defineEmits<{
+  (e: "change-time", newTestingTime: number): void;
+}>();
+
+// const emit = defineEmits({
+//   "change-time": (newTestingTime) => {
+//     if (typeof newTestingTime === "number") {
+//       return true;
+//     } else {
+//       console.warn("Invalid change-time event payload!");
+//       return false;
+//     }
+//   },
+// });
 
 const testingTime = ref(0);
 const minutes = ref("00");
@@ -34,12 +35,12 @@ watch(
   }
 );
 
-const timer = setInterval(() => {
+const timer = setInterval((): void => {
   testingTime.value += 1;
   if (testingTime.value < 10) {
     seconds.value = "0" + testingTime.value;
   } else if (testingTime.value < 60) {
-    seconds.value = testingTime.value;
+    seconds.value = String(testingTime.value);
   }
   if (testingTime.value / 60 >= 1) {
     minutes.value = "0" + Math.trunc(testingTime.value / 60);
@@ -47,8 +48,9 @@ const timer = setInterval(() => {
       seconds.value =
         "0" + (testingTime.value - Math.trunc(testingTime.value / 60) * 60);
     } else {
-      seconds.value =
-        testingTime.value - Math.trunc(testingTime.value / 60) * 60;
+      seconds.value = String(
+        testingTime.value - Math.trunc(testingTime.value / 60) * 60
+      );
     }
   }
   emit("change-time", testingTime.value);

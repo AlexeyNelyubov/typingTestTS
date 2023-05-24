@@ -1,35 +1,51 @@
-<script setup>
-import { ref } from "vue";
-import { useEventListener } from "/src/composable/useEventListener.ts";
+<script setup lang="ts">
+import { ref, watch } from "vue";
+import { useDocumentKeyboardEvent } from "@/composable/useDocumentKeyboardEvent";
 
-const props = defineProps({
-  randomText: {
-    type: String,
-    required: true,
-  },
-});
+const props = defineProps<{
+  randomText: string;
+}>();
 
-const emit = defineEmits({
-  "check-one-symbol": (curentIndex, numberOfUnvalidSymbols) => {
-    if (
-      typeof curentIndex === "number" &&
-      typeof numberOfUnvalidSymbols === "number"
-    ) {
-      return true;
-    } else {
-      console.warn("Invalid change-time event payload!");
-      return false;
-    }
-  },
-  "finish-test": null,
-});
+const emit = defineEmits<{
+  (
+    e: "check-one-symbol",
+    curentIndex: number,
+    numberOfUnvalidSymbols: number
+  ): void;
+  (e: "finish-test"): void;
+}>();
+
+// const emit = defineEmits({
+//   "check-one-symbol": (curentIndex, numberOfUnvalidSymbols) => {
+//     if (
+//       typeof curentIndex === "number" &&
+//       typeof numberOfUnvalidSymbols === "number"
+//     ) {
+//       return true;
+//     } else {
+//       console.warn("Invalid change-time event payload!");
+//       return false;
+//     }
+//   },
+//   "finish-test": null,
+// });
 
 const curentIndex = ref(0);
 const isCurentSymbolValid = ref(true);
 const numberOfUnvalidSymbols = ref(0);
 const colorForValidateSymbol = ref("#fff");
 
-useEventListener(document, "keypress", (event) => {
+watch(
+  () => props.randomText,
+  () => {
+    curentIndex.value = 0;
+    isCurentSymbolValid.value = true;
+    numberOfUnvalidSymbols.value = 0;
+    colorForValidateSymbol.value = "#fff";
+  }
+);
+
+useDocumentKeyboardEvent("keydown", (event: KeyboardEvent): void => {
   if (event.key === props.randomText[curentIndex.value]) {
     isCurentSymbolValid.value = true;
     curentIndex.value += 1;

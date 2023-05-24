@@ -1,14 +1,14 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
-import { useEventListener } from "/src/composable/useEventListener.ts";
-import AnswerN1 from "/src/components/Answer/AnswerN1.vue";
-import AnswerN2 from "/src/components/Answer/AnswerN2.vue";
-import AnswerN3 from "/src/components/Answer/AnswerN3.vue";
-import AnswerN4 from "/src/components/Answer/AnswerN4.vue";
-import AnswerN5 from "/src/components/Answer/AnswerN5.vue";
-import AnswerN6 from "/src/components/Answer/AnswerN6.vue";
-import AnswerN7 from "/src/components/Answer/AnswerN7.vue";
-import AnswerN8 from "/src/components/Answer/AnswerN8.vue";
+import { useDocumentClick } from "@/composable/useDocumentClick";
+import AnswerN1 from "@/components/Answer/AnswerN1.vue";
+import AnswerN2 from "@/components/Answer/AnswerN2.vue";
+import AnswerN3 from "@/components/Answer/AnswerN3.vue";
+import AnswerN4 from "@/components/Answer/AnswerN4.vue";
+import AnswerN5 from "@/components/Answer/AnswerN5.vue";
+import AnswerN6 from "@/components/Answer/AnswerN6.vue";
+import AnswerN7 from "@/components/Answer/AnswerN7.vue";
+import AnswerN8 from "@/components/Answer/AnswerN8.vue";
 
 const showQuestion = ref(false);
 
@@ -23,11 +23,12 @@ const allQuestions1 = [
   AnswerN8,
 ];
 
-useEventListener(document, "click", (event) => {
+useDocumentClick((event: Event): void => {
+  console.log("1");
   if (
-    event.target.className === "index" ||
-    event.target.className === "result" ||
-    event.target.className === "common-questions"
+    (event.target as HTMLInputElement).className === "index" ||
+    (event.target as HTMLInputElement).className === "result" ||
+    (event.target as HTMLInputElement).className === "common-questions"
   ) {
     showQuestion.value = false;
   }

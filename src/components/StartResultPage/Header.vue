@@ -1,10 +1,7 @@
-<script setup>
-const props = defineProps({
-  textForHeader: {
-    type: String,
-    required: true,
-  },
-});
+<script setup lang="ts">
+const props = defineProps<{
+  textForHeader: string;
+}>();
 </script>
 
 <template>

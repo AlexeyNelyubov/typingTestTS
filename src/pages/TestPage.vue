@@ -1,10 +1,10 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import Timer from "/src/components/TestPage/Timer.vue";
-import Test from "/src/components/TestPage/Test.vue";
-import TestingParams from "/src/components/TestPage/TestingParams.vue";
-import { getRandomTextFromAjax } from "/src/helpers/getRandomTextFromAjax.ts";
+import Timer from "@/components/TestPage/Timer.vue";
+import Test from "@/components/TestPage/Test.vue";
+import TestingParams from "@/components/TestPage/TestingParams.vue";
+import { getRandomTextFromAjax } from "@/helpers/getRandomTextFromAjax";
 
 const router = useRouter();
 
@@ -16,14 +16,17 @@ const testingTime = ref(0);
 const speed = ref(0);
 const accuracy = ref(0);
 
-const startNewTest = async () => {
+const startNewTest = async (): Promise<void> => {
   randomText.value = await getRandomTextFromAjax();
   isNewTest.value = true;
+  testingTime.value = 0;
+  curentIndex.value = 0;
+  numberOfUnvalidSymbols.value = 0;
 };
 
 startNewTest();
 
-const finishTest = () => {
+const finishTest = (): void => {
   router.push({
     name: "result",
     query: { speed: `${speed.value}`, accuracy: `${accuracy.value}` },
@@ -36,7 +39,7 @@ const finishTest = () => {
     <Timer
       :isNewTest="isNewTest"
       @change-time="
-        (newTestingTime) => {
+        (newTestingTime: number): void => {
           (testingTime = newTestingTime), (isNewTest = false);
         }
       "
@@ -45,7 +48,7 @@ const finishTest = () => {
       <Test
         :randomText="randomText"
         @check-one-symbol="
-          (newCurentIndex, newNumberOfUnvalidSymbols) => {
+          (newCurentIndex: number, newNumberOfUnvalidSymbols: number): void => {
             (curentIndex = newCurentIndex),
               (numberOfUnvalidSymbols = newNumberOfUnvalidSymbols);
           }
@@ -58,7 +61,7 @@ const finishTest = () => {
         :numberOfUnvalidSymbols="numberOfUnvalidSymbols"
         @start-new-test="startNewTest"
         @change-testing-params="
-          (speedValue, accuracyValue) => {
+          (speedValue: number, accuracyValue: number): void => {
             (speed = speedValue), (accuracy = accuracyValue);
           }
         "

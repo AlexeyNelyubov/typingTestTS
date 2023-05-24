@@ -1,12 +1,12 @@
-<script setup>
-const props = defineProps({
-  textForButton: {
-    type: String,
-    required: true,
-  },
-});
+<script setup lang="ts">
+const props = defineProps<{
+  textForButton: string;
+}>();
 
-defineEmits({ "start-new-test": null });
+// defineEmits({ "start-new-test": null });
+defineEmits<{
+  (e: "start-new-test"): void;
+}>();
 </script>
 
 <template>

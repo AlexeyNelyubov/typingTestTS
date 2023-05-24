@@ -1,9 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import { useRouter } from "vue-router";
-import CommonQuestions from "/src/components/CommonQuestions.vue";
-import Header from "/src/components/StartResultPage/Header.vue";
-import Information from "/src/components/StartResultPage/Information.vue";
-import StartTestButton from "/src/components/StartResultPage/StartTestButton.vue";
+import CommonQuestions from "@/components/CommonQuestions.vue";
+import Header from "@/components/StartResultPage/Header.vue";
+import Information from "@/components/StartResultPage/Information.vue";
+import StartTestButton from "@/components/StartResultPage/StartTestButton.vue";
 
 const router = useRouter();
 </script>
