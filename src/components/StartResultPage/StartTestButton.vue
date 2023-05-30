@@ -15,16 +15,9 @@ defineEmits<{
   </button>
 </template>
 
-<style>
+<style lang="scss">
 .btn-start-test {
-  margin-top: 4vh;
-  padding: 1.2rem 2.4rem;
-  font: 2.4rem cursive;
-  color: #fff;
-  text-align: center;
-  text-decoration: none;
-  background-color: #4caf50;
-  border: none;
-  border-radius: 1.2rem;
+  @include button($font-size-for-sign, $color, #4caf50);
+  padding: $margin-padding $margin-padding * 2;
 }
 </style>

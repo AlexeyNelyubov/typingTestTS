@@ -15,20 +15,17 @@ const props = defineProps<{
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .information {
   display: flex;
   justify-content: center;
-}
 
-.information__text {
-  width: 50vw;
-  padding: 2.4rem;
-  font: 2.6rem Times New Roman;
-  color: #fff;
-  text-align: center;
-  border: 1px solid #fff;
-  border-radius: 1.2rem;
-  box-shadow: 0 0 2rem #fff;
+  &__text {
+    width: 50vw;
+    margin-bottom: $vertical-margin-between-block;
+    font: $font-size-for-text $font-style-for-text;
+    text-align: center;
+    @include border($margin-padding * 2, $margin-padding * 2, $color, 2rem);
+  }
 }
 </style>

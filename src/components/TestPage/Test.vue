@@ -34,6 +34,7 @@ const curentIndex = ref(0);
 const isCurentSymbolValid = ref(true);
 const numberOfUnvalidSymbols = ref(0);
 const colorForValidateSymbol = ref("#fff");
+const VALID_KEY = ["Shift", "Control", "Alt", "CapsLock"];
 
 watch(
   () => props.randomText,
@@ -53,7 +54,7 @@ useDocumentKeyboardEvent("keydown", (event: KeyboardEvent): void => {
     if (curentIndex.value === props.randomText.length) {
       emit("finish-test");
     }
-  } else {
+  } else if (!VALID_KEY.includes(event.key)) {
     isCurentSymbolValid.value = false;
     numberOfUnvalidSymbols.value += 1;
     colorForValidateSymbol.value = "#ff0000";
@@ -80,26 +81,29 @@ useDocumentKeyboardEvent("keydown", (event: KeyboardEvent): void => {
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .test-main-random-text {
   width: 60vw;
-  padding: 2.4rem;
-  font: 2.6rem Times New Roman;
-  border: 1px solid v-bind(colorForValidateSymbol);
-  border-radius: 1.2rem;
-  box-shadow: 0 0 2rem v-bind(colorForValidateSymbol);
+  font: $font-size-for-text $font-style-for-text;
+  @include border(
+    $margin-padding * 2,
+    $margin-padding * 2,
+    v-bind(colorForValidateSymbol),
+    2rem
+  );
 }
 
 .validSymbol {
   background-color: #37ff00;
+  color: $background-color;
 }
 
 .unvalidSymbol {
   background-color: #ff0000;
-  color: #000;
+  color: $background-color;
 }
 .checkedSymbol {
-  color: #fff;
+  color: $color;
 }
 
 .uncheckedSymbol {

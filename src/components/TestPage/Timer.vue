@@ -66,21 +66,17 @@ onUnmounted(() => clearInterval(timer));
       {{ minutes }}
     </div>
     <span>:</span>
-    <div style="width: 3rem" class="test-timer__text">{{ seconds }}</div>
+    <div style="width: 3rem">{{ seconds }}</div>
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .test-timer {
-  margin-bottom: 4vh;
-  padding: 1.6rem 3.2rem;
+  margin-bottom: $vertical-margin-between-block;
   display: flex;
   justify-content: center;
   align-items: center;
-  font: 2.4rem cursive;
-  color: #fff;
-  border: 1px solid #fff;
-  border-radius: 1.2rem;
-  box-shadow: 0 0 2rem #fff;
+  font: $font-size-for-sign $font-style-for-sign;
+  @include border($margin-padding, $margin-padding * 2, $color, 2rem);
 }
 </style>

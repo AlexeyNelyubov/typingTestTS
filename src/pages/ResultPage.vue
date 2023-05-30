@@ -26,12 +26,8 @@ const route = useRoute();
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .result {
-  min-height: 100vh;
-  padding: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @extend %extend-page;
 }
 </style>

@@ -10,10 +10,9 @@ const props = defineProps<{
   </header>
 </template>
 
-<style>
+<style lang="scss">
 .title {
-  margin-bottom: 4vh;
-  font: 3.2rem cursive;
-  color: #fff;
+  margin-bottom: $vertical-margin-between-block;
+  font: $font-size-for-sign + 0.6rem $font-style-for-sign;
 }
 </style>

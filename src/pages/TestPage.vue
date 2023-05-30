@@ -70,17 +70,13 @@ const finishTest = (): void => {
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .test {
-  min-height: 100vh;
-  padding: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  @extend %extend-page;
 
-.test__main {
-  display: flex;
-  justify-content: center;
+  &__main {
+    display: flex;
+    justify-content: center;
+  }
 }
 </style>

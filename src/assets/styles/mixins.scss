@@ -1,0 +1,15 @@
+@mixin border ($padding-y, $padding-x, $border-shadow-color, $shadow-blur) {
+    padding: $padding-y $padding-x;
+    border: $border-width $border-style $border-shadow-color;
+    border-radius: $border-radius;
+    box-shadow: 0 0 $shadow-blur $border-shadow-color;
+}
+
+@mixin button ($font-size, $font-color, $button-color){
+    font: $font-size $font-style-for-sign;
+    color: $font-color;
+    background-color: $button-color;
+    border-radius: $border-radius;
+    border: none;
+    cursor: pointer;
+  }

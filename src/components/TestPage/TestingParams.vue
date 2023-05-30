@@ -72,39 +72,28 @@ const startNewTest = (): void => {
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .test-main-testing-params {
-  margin-left: 2.4rem;
-  border: 1px solid #fff;
-  border-radius: 1.2rem;
-  box-shadow: 0 0 2rem #fff;
-  padding: 2.4rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  text-align: justify;
-}
+  margin-left: $margin-padding * 2;
+  @include border($margin-padding * 2, $margin-padding * 2, $color, 2rem);
 
-.test-main-testing-params__item {
-  margin-bottom: 1.2rem;
-  font: 2.6rem Times New Roman;
-  color: #fff;
-}
+  &__item {
+    margin-bottom: $margin-padding * 2;
+    font: $font-size-for-text $font-style-for-text;
+  }
 
-.test-main-testing-params__item-value {
-  margin-bottom: 4.4rem;
-  font: 3.6rem Times New Roman;
-  color: #fff;
+  &__item-value {
+    margin-bottom: $margin-padding * 4;
+    font: $font-size-for-text + 1 $font-style-for-text;
+  }
 }
 
 .test-main-new-test-button {
   padding: 0.8rem 4rem;
-  font: 2rem cursive;
-  color: #7b7b7b;
-  text-align: center;
-  text-decoration: none;
-  border: none;
-  border-radius: 1.2rem;
+  @include button($font-size-for-sign - 0.4, $background-color, $color);
 }
 </style>

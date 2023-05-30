@@ -8,8 +8,4 @@ import { RouterView } from "vue-router";
   </main>
 </template>
 
-<style>
-.app-main {
-  background-color: #000;
-}
-</style>
+<style></style>

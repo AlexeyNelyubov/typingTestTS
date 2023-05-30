@@ -24,7 +24,6 @@ const allQuestions1 = [
 ];
 
 useDocumentClick((event: Event): void => {
-  console.log("1");
   if (
     (event.target as HTMLInputElement).className === "index" ||
     (event.target as HTMLInputElement).className === "result" ||
@@ -46,11 +45,7 @@ useDocumentClick((event: Event): void => {
           Вопросы о скорости печати.
         </div>
         <ul>
-          <li
-            v-for="question in allQuestions1"
-            :key="question.id"
-            class="common-questions-payload__one-question"
-          >
+          <li v-for="question in allQuestions1" :key="question.id">
             <component :is="question"></component>
           </li>
         </ul>
@@ -68,7 +63,7 @@ useDocumentClick((event: Event): void => {
   </Transition>
 </template>
 
-<style>
+<style lang="scss">
 .common-questions {
   width: 100vw;
   margin: 10vh 0 4vh;
@@ -94,32 +89,18 @@ useDocumentClick((event: Event): void => {
 }
 .common-questions-payload {
   width: 50vw;
-}
-.common-questions-payload__title {
-  font: 2.4rem cursive;
-  color: #fff;
-  cursor: pointer;
-}
 
-.common-questions-payload__one-question {
-  margin-top: 2.4rem;
-  font: 2.4rem Times New Roman;
-  color: #fff;
+  &__title {
+    font: $font-size-for-sign $font-style-for-sign;
+    cursor: pointer;
+  }
 }
 
 .show-question-btn {
   position: absolute;
   bottom: 2vh;
   right: 2vw;
-  padding: 1.2rem 2.4rem;
-  font: 2.4rem cursive;
-  text-align: center;
-  text-decoration: none;
-  color: #fff;
-  background-color: #000;
-  border: 1px solid #fff;
-  border-radius: 1.2rem;
-  box-shadow: 0 0 1rem #fff;
-  cursor: pointer;
+  @include button($font-size-for-sign, $color, $background-color);
+  @include border($margin-padding, $margin-padding * 2, $color, 2rem);
 }
 </style>
