@@ -23,7 +23,7 @@ const props = defineProps<{
   &__text {
     width: 50vw;
     margin-bottom: $vertical-margin-between-block;
-    font: $font-size-for-text $font-style-for-text;
+    font: $font-size-for-text * 0.9 $font-style-for-text;
     text-align: center;
     @include border($margin-padding * 2, $margin-padding * 2, $color, 2rem);
   }

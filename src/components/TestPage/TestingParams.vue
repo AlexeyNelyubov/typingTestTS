@@ -48,32 +48,33 @@ watch([speed, accuracy], () => {
 });
 
 const startNewTest = (): void => {
-  const btn = document.querySelector(".test-main-new-test-button");
+  const btn = document.querySelector(".testing-params__new-test-button");
   (btn as HTMLInputElement).blur();
   emit("start-new-test");
 };
 </script>
 
 <template>
-  <div class="test-main-testing-params">
-    <div>
-      <p class="test-main-testing-params__item">Скорость</p>
-      <p class="test-main-testing-params__item-value">
+  <div class="testing-params">
+    <div class="testing-params__items">
+      <p class="testing-params__item">Скорость</p>
+      <p class="testing-params__item-value">
         {{ speed }} <span style="font-size: 0.6em">зн./мин</span>
       </p>
-      <p class="test-main-testing-params__item">Точность</p>
-      <p class="test-main-testing-params__item-value">
+      <p class="testing-params__item">Точность</p>
+      <p class="testing-params__item-value">
         {{ accuracy }} <span style="font-size: 0.6em">%</span>
       </p>
     </div>
-    <button class="test-main-new-test-button" @click="startNewTest">
+    <button class="testing-params__new-test-button" @click="startNewTest">
       Заново!
     </button>
   </div>
 </template>
 
 <style lang="scss">
-.test-main-testing-params {
+.testing-params {
+  width: 15vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -81,6 +82,11 @@ const startNewTest = (): void => {
   margin-left: $margin-padding * 2;
   @include border($margin-padding * 2, $margin-padding * 2, $color, 2rem);
 
+  &__items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   &__item {
     margin-bottom: $margin-padding * 2;
     font: $font-size-for-text $font-style-for-text;
@@ -92,7 +98,7 @@ const startNewTest = (): void => {
   }
 }
 
-.test-main-new-test-button {
+.testing-params__new-test-button {
   padding: 0.8rem 4rem;
   @include button($font-size-for-sign - 0.4, $background-color, $color);
 }
