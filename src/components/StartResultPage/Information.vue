@@ -1,16 +1,17 @@
 <script setup lang="ts">
-const props = defineProps<{
-  // textForShow: Array<string>;
-  textForShow: string[];
-}>();
+// const props = defineProps<{
+//   // textForShow: Array<string>;
+//   textForShow: string[];
+// }>();
 </script>
 
 <template>
   <div class="information">
     <div class="information__text">
-      <p v-for="item in props.textForShow" :key="item.id">
+      <slot></slot>
+      <!-- <p v-for="item in props.textForShow" :key="item.id">
         {{ item }}
-      </p>
+      </p> -->
     </div>
   </div>
 </template>

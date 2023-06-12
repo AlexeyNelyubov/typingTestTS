@@ -1,12 +1,13 @@
 <script setup lang="ts">
-const props = defineProps<{
-  textForHeader: string;
-}>();
+// const props = defineProps<{
+//   textForHeader: string;
+// }>();
 </script>
 
 <template>
   <header class="title">
-    {{ props.textForHeader }}
+    <slot></slot>
+    <!-- {{ props.textForHeader }} -->
   </header>
 </template>
 
