@@ -1,27 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useDocumentClick } from "@/composable/useDocumentClick";
-import AnswerN1 from "@/components/Answer/AnswerN1.vue";
-import AnswerN2 from "@/components/Answer/AnswerN2.vue";
-import AnswerN3 from "@/components/Answer/AnswerN3.vue";
-import AnswerN4 from "@/components/Answer/AnswerN4.vue";
-import AnswerN5 from "@/components/Answer/AnswerN5.vue";
-import AnswerN6 from "@/components/Answer/AnswerN6.vue";
-import AnswerN7 from "@/components/Answer/AnswerN7.vue";
-import AnswerN8 from "@/components/Answer/AnswerN8.vue";
+import AllQuestions from "@/components/Questions/AllQuestions.vue";
 
 const showQuestion = ref(false);
-
-const allQuestions1 = [
-  AnswerN1,
-  AnswerN2,
-  AnswerN3,
-  AnswerN4,
-  AnswerN5,
-  AnswerN6,
-  AnswerN7,
-  AnswerN8,
-];
 
 useDocumentClick((event: Event): void => {
   if (
@@ -44,11 +26,7 @@ useDocumentClick((event: Event): void => {
         >
           Вопросы о скорости печати.
         </div>
-        <ul>
-          <li v-for="question in allQuestions1" :key="question.id">
-            <component :is="question"></component>
-          </li>
-        </ul>
+        <AllQuestions />
       </div>
     </div>
   </Transition>
